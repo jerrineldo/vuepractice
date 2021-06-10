@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Intro to v-bind</title>
+    <meta charset="UTF-8" />
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <style>
+      .container {
+        background: #cecece;
+      }
+      .loadpicture {
+        width: 300px;
+      }
+      .highlight {
+        border: 1px solid yellow;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="app">
+      <span v-bind:class="loadClass" v-bind:style="newStyle"> look at me! </span>
+      <img
+        v-bind:src="loadsrc"
+        v-bind:title="loadtitle"
+        v-bind:alt="newAlt"
+        v-bind:class="loadpicture"
+      />
+    </div>
+    <script>
+      var app = new Vue({
+        //Bind Vue object to HTML element through query selector
+        el: "#app",
+        data: {
+          loadClass: "container highlight",
+          loadsrc: "Jerrin-1.jpg",
+          loadtitle: "Profile Picture",
+          newAlt: "dynamically set alt!",
+          loadpicture: "loadpicture",
+          newStyle: "font-size:30px;",
+        },
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>v-if If Statements</title>
+    <meta charset="UTF-8" />
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <style>
+      .special {
+        background: yellow;
+        border: 1px dotted #fe0000;
+        padding: 30px;
+        display: block;
+        text-align: center;
+      }
+      .important {
+        font-weight: bold;
+        font-size: 30px;
+      }
+      .card {
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+        transition: 0.3s;
+        width: 40%;
+      }
+
+      .card:hover {
+        box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+      }
+
+      .container {
+        padding: 2px 16px;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="app">
+      <span v-if="profile">
+        <h2>{{profile.desc}}</h2>
+        <div class="card">
+          <span v-if="profile.pic">
+            <img v-bind:src="profile.pic" alt="Avatar" style="width: 100%" />
+          </span>
+          <span v-else
+            ><img v-bind:src="profile.default" alt="Avatar" style="width: 100%"
+          /></span>
+          <div class="container">
+            <h4><b>{{profile.fname}} {{profile.lname}}</b></h4>
+            <span v-if="profile.bio">
+              <p>{{profile.bio}}</p>
+            </span>
+            <span v-else> no bio available </span>
+          </div>
+        </div>
+      </span>
+      <span v-else> No Profile Data found. </span>
+    </div>
+    <script>
+      var app = new Vue({
+        el: "#app",
+
+        data: {
+          profile: {
+            fname: "Jerrin",
+            lname: "Eldo",
+            desc: "Web Developer",
+            bio: "Based out of Toronto",
+            pic: "Jerrin-1.jpg",
+            default: "default.png",
+          },
+        },
+      });
+    </script>
+  </body>
+</html>
