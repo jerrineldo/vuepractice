@@ -1,0 +1,72 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+	
+		<title>J1 Practice</title>
+		<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+		<style>
+			.formfield{margin-bottom:10px;}
+		</style>
+	</head>
+	<body>
+	<p>Winning Score <a href="https://cemc.uwaterloo.ca/contests/computing/2019/stage%201/juniorEF.pdf">from the J1 problem hosted by the CCC.</a></p>
+	<div id="app">
+		<div class="formfield">
+			<label>3 pointers: <label> <input v-model="apples.pointers_3">
+		</div>
+		<div class="formfield">
+			<label>2 pointers: <label> <input v-model="apples.pointers_2">
+		</div>
+		<div class="formfield">
+			<label>1 pointer: <label> <input v-model="apples.pointers_1">
+		</div>
+        <div class="formfield">
+			<label>3 pointers: <label> <input v-model="bananas.pointers_3">
+		</div>
+		<div class="formfield">
+			<label>2 pointers: <label> <input v-model="bananas.pointers_2">
+		</div>
+		<div class="formfield">
+			<label>1 pointer: <label> <input v-model="bananas.pointers_1">
+		</div>
+		<div id="result">
+			<div><label>show results:</label><input type="checkbox" v-model="showresults"></div>
+			<div v-if="showresults">Result : {{checkresult}} </div>
+		</div>
+	</div>
+	
+	<script>
+	var app = new Vue({
+		el: '#app',
+		data:{
+            showresults:false,
+			apples:{
+                pointers_3:0,
+                pointers_2:0,
+                pointers_1:0
+            },
+            bananas:{
+                pointers_3:0,
+                pointers_2:0,
+                pointers_1:0
+            },
+		},
+		computed:{
+			checkresult:function(){
+                const apples_team_score = (Number(this.apples.pointers_3 * 3) + Number(this.apples.pointers_2 * 2) + Number(this.apples.pointers_1));
+                const bananas_team_score = Number(this.bananas.pointers_3 * 3) + Number(this.bananas.pointers_2 * 2) + Number(this.bananas.pointers_1);
+                if(apples_team_score>bananas_team_score){
+                    return 'A';
+                }
+                else if(apples_team_score<bananas_team_score){
+                    return 'B';
+                }
+                else
+                return 'T';
+            }
+		}
+	});
+	
+	</script>
+	</body>
+</html>
